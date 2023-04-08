@@ -20,18 +20,18 @@ from rest_framework.response import Response
 #     return render(request, template_name, obj)
 class DepositorMstAPI(APIView):
     def get(self, request):
-        mymodels = DepositorMst.objects.all()
+        mymodels = DepositorMst.objects.filter(is_delete=True)
         serializer = DepositorMstSerializer(mymodels, many=True)
         return Response(serializer.data)
 class OfficeMstAPI(APIView):
     def get(self, request):
-        mymodels = OfficeMst.objects.all()
+        mymodels = OfficeMst.objects.filter(is_delete=True)
         serializer = OfficeMstSerializer(mymodels, many=True)
         return Response(serializer.data)
 class PaymentConditionRegistrationAPI(APIView):
     def post(self, request):
         serializer_class = PaymentConditionRegistrationSerializer
         queryset = PaymentConditionRegistration.objects.all()
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.PaymentConditionRegistrationSerializer(data=request.data)
         serializer.save()
         return Response({"status": "success", "note": serializer.data},status=None)

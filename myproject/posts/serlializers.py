@@ -16,6 +16,8 @@ class OfficeMstSerializer(serializers.ModelSerializer):
     class Meta:
         model =OfficeMst
         fields = ('cd','name','is_delete')
+
+
 class DepositorMstSerializer(serializers.ModelSerializer):
     class Meta:
         model =OfficeMst
